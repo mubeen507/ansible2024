@@ -1,0 +1,46 @@
+---
+- name: Update UBUNTU servers
+  hosts: ubuntu
+  become: yes
+
+  tasks:
+  - name: Update System
+    apt:
+      update_cache: yes
+
+  - name: Ensure Apache Installed
+    package:
+      name: apache2
+      state: present
+
+  - name: Start Apache
+    service:
+      name: apache2
+      state: started
+
+  - name: Enable Apache
+    service:
+      name: apache2
+      enabled: yes
+
+- name: Update CENTOS servers
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: Ensure Apache Installed
+    package:
+      name: httpd
+      state: present
+
+  - name: Start Apache
+    service:
+      name: httpd
+      state: started
+
+  - name: Enable Apache
+    service:
+      name: httpd
+      enabled: yes
+...
+

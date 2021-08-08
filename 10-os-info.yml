@@ -1,0 +1,21 @@
+---
+- name: Update Web servers
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Run CENTOS Page
+    copy:
+      src: centos.html
+      dest: /var/www/html/centos.html
+    when: ansible_distribution == "CentOS"
+
+  - name: Run UBUNTU Page
+    copy:
+      src: ubuntu.html
+      dest: /var/www/html/ubuntu.html
+    when: ansible_distribution == "Ubuntu"
+
+...
+

@@ -1,0 +1,32 @@
+---
+# Play #1 
+- name: Update web servers
+  hosts: web
+
+  tasks:
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/web
+      state: directory
+
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/web2
+      state: directory
+
+# Play #2
+- name: Update app servers
+  hosts: app
+
+  tasks:
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/app
+      state: directory
+
+  - name: Ensure directory is created
+    file:
+      path: /home/centos/app2
+      state: directory
+...
+

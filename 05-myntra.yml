@@ -1,0 +1,18 @@
+---
+- name: Update web server
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: Install Git
+    package:
+      name: git
+      state: present
+
+  - name: Update Myntra App
+    git:
+      repo: https://github.com/ravi2krishna/ecomm.git
+      dest: /var/www/html/
+
+...
+

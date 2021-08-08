@@ -1,0 +1,39 @@
+---
+- name: Update web server
+  hosts: web
+  become: yes
+  vars: 
+    http_port: 9090
+
+  handlers:
+  - name: Restart Apache
+    service:
+      name: httpd
+      state: restarted
+
+  tasks:
+  - name: Update Config File
+    template:
+      src: httpd.j2
+      dest: /etc/httpd/conf/httpd.conf
+    notify:
+    - Restart Apache
+
+  - name: Permissive Mode
+    selinux:
+      policy: targeted
+      state: permissive
+
+  - name: Update PHP App
+    copy:
+      src: date.php
+      dest: /var/www/html/date.php
+
+  - name: Install PHP 
+    package:
+      name: php
+      state: present
+    notify:
+    - Restart Apache
+...
+

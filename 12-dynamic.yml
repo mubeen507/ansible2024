@@ -1,0 +1,15 @@
+---
+- name: Update Web servers
+  hosts: all
+  become: yes
+  vars: 
+    myuser: ravi2krishna
+
+  tasks:
+
+  - name: Run CENTOS Page
+    template:
+      src: dynamic.j2
+      dest: /var/www/html/dynamic.html
+...
+

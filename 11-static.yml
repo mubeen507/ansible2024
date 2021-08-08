@@ -1,0 +1,13 @@
+---
+- name: Update Web servers
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Run CENTOS Page
+    copy:
+      src: static.html
+      dest: /var/www/html/static.html
+...
+
