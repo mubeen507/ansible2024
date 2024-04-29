@@ -4,19 +4,19 @@
   become: yes
 
   tasks:
-  - name: Ensure Apache Installed
-    package:
-      name: httpd
-      state: present
+  - name: Ensure nginx Installed
+    yum:
+      name: nginx
+      state: absent
 
-  - name: Start Apache
+  - name: Start nginx
     service:
-      name: httpd
+      name: nginx
       state: started
 
-  - name: Enable Apache
+  - name: Enable nginx
     service:
-      name: httpd
+      name: nginx
       enabled: yes
 ...
 

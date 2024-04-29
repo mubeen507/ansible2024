@@ -1,0 +1,27 @@
+---
+- name: Update web server centos
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: Install Git
+    package:
+      name: git
+      state: present
+
+  - name: Install nginx
+    package:
+      name: nginx
+      state: present
+
+  - name: Update ecomm  App
+    git:
+      repo: https://github.com/mubeen507/ecomm.git
+      dest: /var/www/html/
+
+
+  - name: Enable nginx
+    service:
+      name: nginx
+      enabled: yes
+...
